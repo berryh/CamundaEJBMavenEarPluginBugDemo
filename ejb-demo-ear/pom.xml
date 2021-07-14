@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>CamundaMavenEARBugDemo</artifactId>
+		<groupId>com.example.ejbdemo</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>ejb-demo-ear</artifactId>
+	<packaging>ear</packaging>
+
+	<properties>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.example.ejbdemo</groupId>
+			<artifactId>ejb-demo-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>com.example.ejbdemo</groupId>
+			<artifactId>ejb-demo-webapi</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.camunda.bpm.javaee</groupId>
+			<artifactId>camunda-ejb-client</artifactId>
+			<version>${camunda.version}</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<displayName>ejb-demo-ear</displayName>
+					<modules>
+						<ejbModule>
+							<groupId>org.camunda.bpm.javaee</groupId>
+							<artifactId>camunda-ejb-client</artifactId>
+						</ejbModule>
+						<ejbModule>
+							<groupId>com.example.ejbdemo</groupId>
+							<artifactId>ejb-demo-core</artifactId>
+						</ejbModule>
+						<webModule>
+							<groupId>com.example.ejbdemo</groupId>
+							<artifactId>ejb-demo-webapi</artifactId>
+							<contextRoot>/webapi</contextRoot>
+						</webModule>
+					</modules>
+					<security>
+						<security-role id="SecurityRole_EJBDemoUser">
+							<role-name>ejbDemoUser</role-name>
+						</security-role>
+					</security>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,3 @@
+<jboss-web>
+	<context-root>/camundademo</context-root>
+</jboss-web>

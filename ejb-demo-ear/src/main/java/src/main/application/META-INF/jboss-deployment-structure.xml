@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+	<deployment>
+		<exclusions>
+			<module name="org.hibernate" slot="main" />
+			<module name="org.antlr" />
+		</exclusions>
+		<exclude-subsystems>
+			<subsystem name="webservices"/>
+			<subsystem name="jaxrs"/>
+		</exclude-subsystems>
+		<dependencies>
+			<module name="javax.jms.api" export="true"/>
+			<module name="javax.xml.ws.api" export="true"/>
+			<module name="javax.jws.api" export="true"/>
+			<!-- Camunda adds the wildfly postgresql module as org.postgresql.postgresql" -->
+			<module name="org.postgresql.postgresql" export="true" optional="false"/>
+			<module name="org.hibernate" services="import" slot="4.2"/>
+			<module name="org.antlr" services="import"/>
+		</dependencies>
+	</deployment>
+</jboss-deployment-structure>

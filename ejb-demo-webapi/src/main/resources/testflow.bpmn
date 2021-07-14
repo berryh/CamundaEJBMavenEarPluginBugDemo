@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1t09g26" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.8.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="Process_09yw7cw" isExecutable="true">
+    <bpmn:startEvent id="ManualStart">
+      <bpmn:outgoing>Flow_0cz8oy9</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="SendTestEvent" name="Send Test Event" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:delegateExpression="${sampleCamundaEvent}">
+      <bpmn:incoming>Flow_0cz8oy9</bpmn:incoming>
+      <bpmn:outgoing>Flow_0yqczme</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0cz8oy9" sourceRef="ManualStart" targetRef="SendTestEvent" />
+    <bpmn:endEvent id="Event_1ep176z">
+      <bpmn:incoming>Flow_0yqczme</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0yqczme" sourceRef="SendTestEvent" targetRef="Event_1ep176z" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_09yw7cw">
+      <bpmndi:BPMNEdge id="Flow_0cz8oy9_di" bpmnElement="Flow_0cz8oy9">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="260" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yqczme_di" bpmnElement="Flow_0yqczme">
+        <di:waypoint x="360" y="117" />
+        <di:waypoint x="422" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="ManualStart">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ps5eiw_di" bpmnElement="SendTestEvent">
+        <dc:Bounds x="260" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ep176z_di" bpmnElement="Event_1ep176z">
+        <dc:Bounds x="422" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

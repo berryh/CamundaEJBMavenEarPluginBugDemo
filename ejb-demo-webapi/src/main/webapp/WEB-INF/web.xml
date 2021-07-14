@@ -1,0 +1,44 @@
+<web-app version="3.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://java.sun.com/xml/ns/javaee"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+		 id="ejb-demo-webapi">
+	<module-name>camundademo</module-name>
+	<display-name>camundademo</display-name>
+
+	<servlet>
+		<servlet-name>MonitorServlet</servlet-name>
+		<servlet-class>com.example.ejbdemo.webapi.MonitorServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>testServlet</servlet-name>
+		<servlet-class>com.example.ejbdemo.webapi.TestServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Whitelist certain HTTP request methods -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Disable unneeded HTTP methods by 403 Forbidden</web-resource-name>
+			<!-- See the Java Servlet 3.1 Specification, chapter 12.2 -->
+			<url-pattern></url-pattern>
+			<url-pattern>/</url-pattern>
+			<url-pattern>/*</url-pattern>
+			<url-pattern>/mutabledate</url-pattern>
+			<http-method-omission>GET</http-method-omission>
+			<http-method-omission>HEAD</http-method-omission>
+			<http-method-omission>POST</http-method-omission>
+		</web-resource-collection>
+		<auth-constraint/>
+	</security-constraint>
+
+	<servlet-mapping>
+		<servlet-name>testServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>MonitorServlet</servlet-name>
+		<url-pattern>/monitor/*</url-pattern>
+	</servlet-mapping>
+</web-app>
